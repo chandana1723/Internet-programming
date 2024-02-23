@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"], input[type="submit"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .menu-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Restaurant Website</h1>
+
+    <!-- Login Page -->
+    <div id="loginPage">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <!-- Customer Details Form -->
+    <div id="customerDetails" style="display: none;">
+        <h2>Customer Details</h2>
+        <form id="detailsForm">
+            <input type="text" placeholder="Name" id="name">
+            <input type="email" placeholder="Email" id="email">
+            <input type="tel" placeholder="Phone" id="phone">
+            <input type="submit" value="Next">
+        </form>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menuPage" style="display: none;">
+        <h2>Menu</h2>
+        <div class="menu-item">
+            <label for="burger">Burger:</label>
+            <select id="burger">
+                <option value="0">Select quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <!-- Add more options if needed -->
+            </select>
+        </div>
+        <div class="menu-item">
+            <label for="cake">Cake:</label>
+            <select id="cake">
+                <option value="0">Select quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <!-- Add more options if needed -->
+            </select>
+        </div>
+        <div class="menu-item">
+            <label for="drink">Drink:</label>
+            <select id="drink">
+                <option value="0">Select quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <!-- Add more options if needed -->
+            </select>
+        </div>
+        <button onclick="submitBooking()">Book Table</button>
+    </div>
+
+    <!-- Confirmation Page -->
+    <div id="confirmationPage" style="display: none;">
+        <h2>Booking Confirmed</h2>
+        <p>Thank you for your booking!</p>
+        <p id="customerInfo"></p>
+    </div>
+</div>
+
+<script>
+    // Function to handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Perform dummy login validation
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        // Dummy validation
+        if (username === 'admin' && password === 'password') {
+            // Show customer details page
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('customerDetails').style.display = 'block';
+        } else {
+            alert('Invalid username or password');
+        }
+    });
+
+    // Function to handle customer details form submission
+    document.getElementById('detailsForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Show menu page
+        document.getElementById('customerDetails').style.display = 'none';
+        document.getElementById('menuPage').style.display = 'block';
+    });
+
+    // Function to handle booking confirmation
+    function submitBooking() {
+        // Get customer details
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+
+        // Get selected menu items and quantities
+        var burgerQuantity = document.getElementById('burger').value;
+        var cakeQuantity = document.getElementById('cake').value;
+        var drinkQuantity = document.getElementById('drink').value;
+
+        // Show confirmation page with customer details and order summary
+        document.getElementById('customerInfo').innerHTML = "Name: " + name + "<br>Email: " + email + "<br>Phone: " + phone +
+            "<br><br>Order Summary:<br>" +
+            "Burger: " + burgerQuantity + "<br>" +
+            "Cake: " + cakeQuantity + "<br>" +
+            "Drink: " + drinkQuantity;
+        document.getElementById('menuPage').style.display = 'none';
+        document.getElementById('confirmationPage').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
