@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant website </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('black image.jpg');
+            height: 50vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f7f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #010d01;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .menu-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> welcome to SCAN Restaurant </h1>
+
+    <!-- Login Page -->
+    <div id="loginPage">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menuPage" style="display: none;">
+        <h2>Menu</h2>
+        <div class="menu-item">Burger - ₹100</div>
+        <div class="menu-item">Cake - ₹150</div>
+        <div class="menu-item">Drink - ₹50</div>
+        <button onclick="confirmBooking()">Confirm Booking</button>
+    </div>
+
+    <!-- Confirmation Page -->
+    <div id="confirmationPage" style="display: none;">
+        <h2>Booking Confirmed</h2>
+        <p>Thank you for your booking!</p>
+    </div>
+</div>
+
+<script>
+    // Function to handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Perform dummy login validation
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        // Dummy validation
+        if (username === 'admin' && password === 'password') {
+            // Show menu page
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('menuPage').style.display = 'block';
+        } else {
+            alert('Invalid username or password');
+        }
+    });
+
+    // Function to handle booking confirmation
+    function confirmBooking() {
+        // Show confirmation page
+        document.getElementById('menuPage').style.display = 'none';
+        document.getElementById('confirmationPage').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
